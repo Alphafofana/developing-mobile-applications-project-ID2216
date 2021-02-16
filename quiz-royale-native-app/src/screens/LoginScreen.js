@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import logo from "../assets/QuizrRoyaleLogo1.jpg";
+import logo from "../../assets/QuizrRoyaleLogo1.png";
 
-export function LoginScreen() {
+export default function LoginScreen() {
 	return (
 		<View style={styles.screen}>
 			<View style={styles.container}>
