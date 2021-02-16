@@ -7,10 +7,10 @@ function NavigationBar() {
 	return (
 		<View style={styles.view}>
 			<TouchableOpacity>
-				<FontAwesome size={50} name="home" color={Colors.WHITE} />
+				<FontAwesome size={50} name="user" color={Colors.WHITE} />
 			</TouchableOpacity>
 			<TouchableOpacity>
-				<FontAwesome size={50} name="user" color={Colors.WHITE} />
+				<FontAwesome size={50} name="home" color={Colors.WHITE} />
 			</TouchableOpacity>
 			<TouchableOpacity>
 				<FontAwesome5
