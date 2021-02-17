@@ -46,6 +46,10 @@ function QuizScreen() {
 		<>
 			<Header />
 			<SafeAreaView style={styles.main}>
+				<View style={styles.metaInfo}>
+					<Text style={styles.metaInfoText}>Round 1</Text>
+					<Text style={styles.metaInfoText}>Remaining: 2/2</Text>
+				</View>
 				<Question text={question.text} />
 				<FlatList
 					data={alternatives}
@@ -63,6 +67,15 @@ const styles = StyleSheet.create({
 	main: {
 		flex: 1,
 		backgroundColor: Colors.MIDDLE_BLUE,
+	},
+	metaInfo: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		margin: 7,
+	},
+	metaInfoText: {
+		color: Colors.WHITE,
+		fontSize: 24,
 	},
 });
 export default QuizScreen;

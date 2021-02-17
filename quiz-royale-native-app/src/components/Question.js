@@ -5,7 +5,7 @@ import Colors from "../colors";
 function QuestionAlternative(props) {
 	return (
 		<View style={styles.question}>
-			<Text>{props.text}</Text>
+			<Text style={styles.questionText}>{props.text}</Text>
 		</View>
 	);
 }
@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		borderColor: Colors.DARK_BLUE,
 		margin: 5,
+	},
+	questionText: {
+		fontSize: 18,
 	},
 });
 

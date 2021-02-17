@@ -16,6 +16,9 @@ function QuestionAlternative({ text, selected, handlePress }) {
 			backgroundColor: selected ? Colors.GOLD : Colors.WHITE,
 			borderColor: Colors.DARK_BLUE,
 		},
+		questionAlternativeText: {
+			fontSize: 18,
+		},
 	});
 
 	return (
@@ -24,7 +27,7 @@ function QuestionAlternative({ text, selected, handlePress }) {
 			onPress={() => handlePress(text)}
 		>
 			<View style={styles.questionAlternative}>
-				<Text>{text}</Text>
+				<Text style={styles.questionAlternativeText}>{text}</Text>
 			</View>
 		</TouchableOpacity>
 	);
