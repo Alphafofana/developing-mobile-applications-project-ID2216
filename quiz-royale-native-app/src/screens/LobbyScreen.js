@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, Alert } from "react-native";
+import { TouchableOpacity, StyleSheet, Text, View, Button, Alert } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Colors from "../colors";
@@ -15,8 +15,12 @@ export default function LobbyScreen({navigation}) {
 				<Text>Lobby</Text>
 				<Text>Your invites</Text>
 				<View>
-					<InviteCard/>
-					<InviteCard/>
+					<TouchableOpacity onPress={() => navigation.navigate('QuizScreen')}>
+						<InviteCard/>
+					</TouchableOpacity>
+					<TouchableOpacity onPress={() => navigation.navigate('QuizScreen')}>
+						<InviteCard/>
+					</TouchableOpacity>
 				</View>
 				<view>
 				<Button

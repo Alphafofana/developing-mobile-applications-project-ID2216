@@ -1,41 +1,42 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
-import logo from "../../assets/QuizrRoyaleLogo1.png";
+import { StyleSheet, Text, View } from "react-native";
+import Colors from "../colors";
 
-export default function InviteCar() {
+export default function InviteCar({navigation}) {
 	return (
-        <View>
-            <View>
-                <Text>Sport</Text>
-                <Text>History</Text>
-                <Text>Science</Text>
-            </View>
-            <View>
-                <Text>Created by Richard</Text>
-                <Text>10 invited</Text>
-            </View>
-        </View>
+		<View style={styles.main}>
+			<View style={styles.categories}>
+				<Text>Sport</Text>
+				<Text>History</Text>
+				<Text>Science</Text>
+			</View>
+			<View style={styles.meta}>
+				<Text>Created by Richard</Text>
+				<Text>10 invited</Text>
+			</View>
+		</View>
 	);
 }
 
 const styles = StyleSheet.create({
-	screen: {
+	main: {
+		flex: 1,
+		flexDirection: "row",
+		justifyContent: "space-between",
+		marginLeft: 30,
+		marginRight: 30,
+		marginBottom: 5,
+		marginTop: 5,
+		padding: 5,
+		backgroundColor: Colors.LIGHT_BLUE,
+	},
+	categories: {
 		flex: 1,
 		flexDirection: "column",
-		alignItems: "center",
-		justifyContent: "center",
-		backgroundColor: "rgba(79, 81, 140, 1.0)",
 	},
-	container: {
+	meta: {
 		flex: 1,
-		backgroundColor: "#fff",
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	logo: {
-		width: 220,
-		height: 100,
-		marginTop: 10,
-		marginBottom: 15,
+		flexDirection: "column",
+		textAlign: "right",
 	},
 });
