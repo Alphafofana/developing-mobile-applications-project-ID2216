@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, FlatList, StyleSheet, SafeAreaView } from "react-native";
 import Colors from "../colors";
 import Header from "../components/Header";
@@ -10,19 +10,38 @@ const question = {
 	text: "Which is yellow?",
 };
 
-const alternatives = [
-	{ text: "banana", id: 1 },
-	{ text: "green", id: 2 },
-	{ text: "purple", id: 3 },
-	{ text: "monkey", id: 4 },
-];
-
-const renderItem = (alternative) => {
-	console.log(alternative);
-	return <QuestionAlternative text={alternative.item.text} />;
-};
-
 function QuizScreen() {
+	const [alternatives, setAlternatives] = useState([
+		{ text: "banana", id: 1, selected: false },
+		{ text: "green", id: 2, selected: false },
+		{ text: "purple", id: 3, selected: false },
+		{ text: "monkey", id: 4, selected: false },
+	]);
+
+	function onPress(text) {
+		setAlternatives((prevAlternatives) =>
+			prevAlternatives.map((alt) => {
+				if (alt.text === text) {
+					alt.selected = true;
+				} else {
+					alt.selected = false;
+				}
+				return alt;
+			})
+		);
+	}
+
+	const renderItem = (alternative) => {
+		console.log(alternative);
+		return (
+			<QuestionAlternative
+				text={alternative.item.text}
+				selected={alternative.item.selected}
+				handlePress={onPress}
+			/>
+		);
+	};
+
 	return (
 		<>
 			<Header />
