@@ -1,5 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, Button, Alert } from "react-native";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Colors from "../colors";
 import Header from "../components/Header";
 import NavigationBar from "../components/NavigationBar";
 import InviteCard from "../components/InviteCard";
@@ -8,7 +11,7 @@ export default function LobbyScreen({navigation}) {
 	return (
 		<>
             <Header/>
-			<View>
+			<View style={styles.main}>
 				<Text>Lobby</Text>
 				<Text>Your invites</Text>
 				<View>
@@ -18,7 +21,7 @@ export default function LobbyScreen({navigation}) {
 				<view>
 				<Button
 					title="Quick Game"
-					onPress={() => Alert.alert('Simple Button pressed')}
+					onPress={() => navigation.navigate('QuizScreen')}
 				/>
 				<Button
 					title="Create New Game"
@@ -32,23 +35,8 @@ export default function LobbyScreen({navigation}) {
 }
 
 const styles = StyleSheet.create({
-	screen: {
+	main: {
 		flex: 1,
-		flexDirection: "column",
-		alignItems: "center",
-		justifyContent: "center",
-		backgroundColor: "rgba(79, 81, 140, 1.0)",
-	},
-	container: {
-		flex: 1,
-		backgroundColor: "#fff",
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	logo: {
-		width: 220,
-		height: 100,
-		marginTop: 10,
-		marginBottom: 15,
+		backgroundColor: Colors.MIDDLE_BLUE,
 	},
 });

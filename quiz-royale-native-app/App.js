@@ -1,14 +1,22 @@
 import { StatusBar } from "expo-status-bar";
+import 'react-native-gesture-handler';
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import LobbyScreen from "./src/screens/LobbyScreen";
 import QuizScreen from "./src/screens/QuizScreen";
 
+const Stack = createStackNavigator();
+
 export default function App() {
 	return (
-		<>
-			<LobbyScreen/>
-		</>
+		<NavigationContainer>
+		<Stack.Navigator initialRouteName="Home">
+			<Stack.Screen name="LobbyScreen" component={LobbyScreen} />
+			<Stack.Screen name="QuizScreen" component={QuizScreen} />
+		</Stack.Navigator>
+		</NavigationContainer> 
 	);
 }
 
