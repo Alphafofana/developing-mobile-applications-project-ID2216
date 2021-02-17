@@ -1,12 +1,33 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
-import logo from "../../assets/QuizrRoyaleLogo1.png";
+import { StyleSheet, Text, View, Button, Alert } from "react-native";
+import Header from "../components/Header";
+import NavigationBar from "../components/NavigationBar";
+import InviteCard from "../components/InviteCard";
 
-export default function LobbyScreen() {
+export default function LobbyScreen({navigation}) {
 	return (
-		<View>
-			<Text>Lobby</Text>
-		</View>
+		<>
+            <Header/>
+			<View>
+				<Text>Lobby</Text>
+				<Text>Your invites</Text>
+				<View>
+					<InviteCard/>
+					<InviteCard/>
+				</View>
+				<view>
+				<Button
+					title="Quick Game"
+					onPress={() => Alert.alert('Simple Button pressed')}
+				/>
+				<Button
+					title="Create New Game"
+					onPress={() => Alert.alert('Simple Button pressed')}
+				/>
+				</view>
+			</View>
+			<NavigationBar/>
+		</>
 	);
 }
 
