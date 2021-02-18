@@ -12,17 +12,18 @@ export default function QuizWizardInvite({navigation}) {
             <Header/>
 			<View style={styles.main}>
 				<Text style={{fontSize: 24, color: 'white'}}>Quiz Wizard</Text>
-                <view>
-				<TouchableOpacity
-					onPress={() => navigation.navigate('QuizScreen')}
-					style={styles.button}>
-					<Text style={{ flex: 1, fontSize: 22, color: 'black' }}>Start</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
-					style={styles.button}>
-					<Text style={{ flex: 1, fontSize: 22, color: 'black' }}>Back to Lobby</Text>
-				</TouchableOpacity>
-				</view>
+                <View>
+					<TouchableOpacity style={styles.button} onPress={() => navigation.navigate('QuizScreen')}>
+						<View style={styles.center}>
+							<Text style={{fontSize: 20}}>Start</Text>
+						</View>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LobbyScreen')}>
+						<View style={styles.center}>
+							<Text style={{fontSize: 20}}>Back to Lobby</Text>
+						</View>
+					</TouchableOpacity>
+				</View>
 			</View>
 			<NavigationBar/>
 		</>
@@ -37,13 +38,15 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors.MIDDLE_BLUE,
 	},
 	button: {
-		flex: 1,
-		alignItems: "center",
 		backgroundColor: "white",
-		width: 240,
-		height: 55,
-		textAlign: "center",
+		width: 220,
+		height: 50,
 		borderRadius: 40,
 		margin: 5,
-	}
+	},
+	center: {
+		flex: 1,
+		alignItems: "center",
+		justifyContent: "center",
+	},
 });

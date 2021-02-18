@@ -22,17 +22,18 @@ export default function LobbyScreen({navigation}) {
 						<InviteCard/>
 					</TouchableOpacity>
 				</View>
-				<view>
-				<TouchableOpacity
-					onPress={() => navigation.navigate('QuizScreen')}
-					style={styles.button}>
-					<Text style={{ flex: 1, fontSize: 22, color: 'black' }}>Quick Game</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
-					style={styles.button}>
-					<Text style={{ flex: 1, fontSize: 22, color: 'black' }}>Start New Game</Text>
-				</TouchableOpacity>
-				</view>
+				<View>
+					<TouchableOpacity style={styles.button} onPress={() => navigation.navigate('QuizScreen')}>
+						<View style={styles.center}>
+							<Text style={{fontSize: 20}}>Quick Game</Text>
+						</View>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.button} onPress={() => navigation.navigate('QuizWizardCategories')}>
+						<View style={styles.center}>
+							<Text style={{fontSize: 20}}>Start New Game</Text>
+						</View>
+					</TouchableOpacity>
+				</View>
 			</View>
 			<NavigationBar/>
 		</>
@@ -47,13 +48,15 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors.MIDDLE_BLUE,
 	},
 	button: {
-		flex: 1,
-		alignItems: "center",
 		backgroundColor: "white",
-		width: 240,
-		height: 55,
-		textAlign: "center",
+		width: 220,
+		height: 50,
 		borderRadius: 40,
 		margin: 5,
-	}
+	},
+	center: {
+		flex: 1,
+		alignItems: "center",
+		justifyContent: "center",
+	},
 });
