@@ -12,6 +12,29 @@ export default function QuizWizardInvite({navigation}) {
             <Header/>
 			<View style={styles.main}>
 				<Text style={{fontSize: 24, color: 'white'}}>Quiz Wizard</Text>
+				<View>
+					<Text style={{color: 'white', paddingLeft: 12}}>Search</Text>
+					<TouchableOpacity style={styles.searchFriend}>
+						<View style={styles.friendText}>
+							<Text style={{color: 'gray', fontSize: 20}}>Username</Text>
+						</View>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.friend}>
+						<View style={styles.friendText}>
+							<Text style={{color: 'white', fontSize: 20}}>Edvin</Text>
+						</View>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.friend}>
+						<View style={styles.friendText}>
+							<Text style={{color: 'white', fontSize: 20}}>Alpha</Text>
+						</View>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.friend}>
+						<View style={styles.friendText}>
+							<Text style={{color: 'white', fontSize: 20}}>Richard</Text>
+						</View>
+					</TouchableOpacity>
+				</View>
                 <View>
 					<TouchableOpacity style={styles.button} onPress={() => navigation.navigate('QuizScreen')}>
 						<View style={styles.center}>
@@ -48,5 +71,25 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: "center",
 		justifyContent: "center",
+	},
+	friend: {
+		width: 280,
+		height: 50,
+		borderRadius: 5,
+		margin: 8,
+		paddingLeft: 15,
+		backgroundColor: Colors.LIGHT_BLUE,
+	},
+	friendText: {
+		flex: 1,
+		justifyContent: "center",
+	},
+	searchFriend: {
+		width: 280,
+		height: 50,
+		borderRadius: 5,
+		margin: 8,
+		paddingLeft: 15,
+		backgroundColor: 'white',
 	},
 });
