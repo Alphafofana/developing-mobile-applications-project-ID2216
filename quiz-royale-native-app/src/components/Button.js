@@ -2,10 +2,11 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import Colors from "../colors";
 
-function Button({ title, style, onPress }) {
+// append blank space due to bug: tinyurl.com/4ubjjflx
+function Button({ style, title, ...props }) {
 	return (
-		<TouchableOpacity style={[styles.container, style]} onPress={onPress}>
-			<Text style={styles.text}>{title}</Text>
+		<TouchableOpacity {...props} style={[styles.container, style]}>
+			<Text style={styles.text}>{title + " "}</Text>
 		</TouchableOpacity>
 	);
 }

@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
+import {
+	StyleSheet,
+	Text,
+	View,
+	Image,
+	SafeAreaView,
+	Alert,
+} from "react-native";
 import Colors from "../colors";
 import logo from "../../assets/QuizrRoyaleLogo1.png";
 import Input from "../components/Input";
@@ -27,9 +34,18 @@ function LoginScreen() {
 			/>
 
 			<Button title={"Login"} style={styles.button} />
-			<Button title={"Register"} style={styles.button} />
+			<Button
+				title={"Register"}
+				style={styles.button}
+				//disabled={true}
+				onPress={() => notifyMessage("How about no!")}
+			/>
 		</SafeAreaView>
 	);
+}
+
+function notifyMessage(msg) {
+	Alert.alert("Currently not implemented", msg);
 }
 
 const styles = StyleSheet.create({
