@@ -5,8 +5,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Colors from "../colors";
 import Header from "../components/Header";
 import NavigationBar from "../components/NavigationBar";
+import quiz from "../Model/QuizModel";
 
 export default function QuizWizardCategories({navigation}) {
+	function getCategories(){
+		quiz.getCategories().then(data => {
+			console.log(data.trivia_categories);
+		  });
+	}
+
 	return (
 		<>
             <Header/>
@@ -14,7 +21,7 @@ export default function QuizWizardCategories({navigation}) {
 				<Text style={{fontSize: 24, color: 'white'}}>Quiz Wizard</Text>
 				<View>
 					<View style={styles.row}>
-						<TouchableOpacity style={styles.category}>
+						<TouchableOpacity style={styles.category} onPress={() => getCategories()}>
 							<View style={styles.center}>
 								<Text style={{color: 'white', fontSize: 20}}>Sport</Text>
 							</View>
