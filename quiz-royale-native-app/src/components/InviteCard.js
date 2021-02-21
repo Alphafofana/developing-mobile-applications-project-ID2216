@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
 		marginTop: 5,
 		padding: 5,
 		width: 325,
+		borderRadius: 4,
 		backgroundColor: Colors.LIGHT_BLUE,
 	},
 	categories: {
