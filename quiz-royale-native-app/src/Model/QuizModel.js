@@ -15,6 +15,13 @@ class QuizModel {
             .then(data => data)
             .catch(console.error);
     }
+
+    setQuestions(cat) {
+        return fetch(`https://opentdb.com/api.php?amount=2&category=${cat}&type=multiple`, {})
+            .then(response => response.json())
+            .then(data => data)
+            .catch(console.error)
+    }
 }
 
 const quiz = new QuizModel();
