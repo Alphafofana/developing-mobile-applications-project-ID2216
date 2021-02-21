@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	StyleSheet,
 	Text,
@@ -11,29 +11,59 @@ import Colors from "../colors";
 import logo from "../../assets/QuizrRoyaleLogo1.png";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import { useAuth } from "../services/FirebaseAuthContext";
 
-function LoginScreen() {
+function LoginScreen({ navigation }) {
+	const { login, currentUser } = useAuth();
+	const [email, setEmail] = React.useState("");
+	const [password, setPassword] = React.useState("");
+	const [error, setError] = useState(" ");
+	const [loading, setLoading] = useState(false);
+
+	async function handleLogin(e) {
+		e.preventDefault();
+
+		try {
+			setError("");
+			setLoading(true);
+			await login(email, password);
+			navigation.navigate("LobbyScreen");
+		} catch {
+			console.error("Failed to log in!");
+			setError("Failed to log in");
+		}
+
+		setLoading(false);
+	}
+
 	return (
-		<SafeAreaView style={styles.main}>
+		<SafeAreaView style={styles.main} accessibilityRole="form">
 			<Image source={logo} style={styles.logo} />
 			<Text style={styles.text}>Username </Text>
 			<Input
 				style={styles.input}
-				placeholder={"Enter username"}
-				keyboardType={"default"}
-				//value={}
-				//onChangeText={setEmail}
+				placeholder={"Email"}
+				keyboardType={"email-address"}
+				value={email}
+				onChangeText={setEmail}
 			/>
 			<Text style={styles.text}>Password </Text>
 			<Input
 				style={styles.input}
-				placeholder={"Enter Password"}
-				secureTextEntry
-				//value={}
-				//onChangeText={setPassword}
+				placeholder={"Password"}
+				//secureTextEntry
+				value={password}
+				onChangeText={setPassword}
 			/>
 
-			<Button title={"Login"} style={styles.button} />
+			<Button
+				title={"Login"}
+				style={styles.button}
+				disabled={loading}
+				onPress={(e) => {
+					handleLogin(e);
+				}}
+			/>
 			<Button
 				title={"Register"}
 				style={styles.button}

@@ -2,7 +2,8 @@ import React from "react";
 import { StyleSheet, TextInput } from "react-native";
 import Colors from "../colors";
 
-export function Input({ style, ...props }) {
+//enterKeyHint error https://bit.ly/3qI0g87
+function Input({ style, ...props }) {
 	return (
 		<TextInput
 			{...props}
