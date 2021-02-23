@@ -4,6 +4,7 @@ const Colors = {
 	DARK_BLUE: "#14274E",
 	GOLD: "#CEAD02",
 	WHITE: "#F1F6F9",
+	GRAY: "#C4C4C4",
 };
 
 export default Colors;
