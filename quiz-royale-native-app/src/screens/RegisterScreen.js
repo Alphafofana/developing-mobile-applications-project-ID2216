@@ -8,7 +8,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import { useAuth } from "../services/FirebaseAuthContext";
 
 function LoginScreen({ navigation }) {
-	const { register, currentUser } = useAuth();
+	const { register } = useAuth();
 	const [email, setEmail] = React.useState("");
 	const [password, setPassword] = React.useState("");
 	const [passwordConfirm, setPasswordConfirm] = React.useState("");
@@ -25,6 +25,7 @@ function LoginScreen({ navigation }) {
 			setError("");
 			setLoading(true);
 			await register(email, password);
+
 			navigation.navigate("LobbyScreen");
 		} catch (error) {
 			//console.error("Failed registration! Reason:" + error);

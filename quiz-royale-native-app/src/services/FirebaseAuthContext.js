@@ -32,6 +32,19 @@ export function AuthProvider({ children }) {
 		return auth.createUserWithEmailAndPassword(email, password);
 	}
 
+	function updateName(name) {
+		currentUser
+			.updateProfile({
+				displayName: name,
+			})
+			// .then(function () {
+			// 	// Update successful.
+			// })
+			.catch(function (error) {
+				// An error happened.
+			});
+	}
+
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged((user) => {
 			setCurrentUser(user);
@@ -46,6 +59,7 @@ export function AuthProvider({ children }) {
 		login,
 		logout,
 		register,
+		updateName,
 	};
 
 	return (
