@@ -5,11 +5,12 @@ import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from "./src/screens/LoginScreen";
+import RegisterScreen from "./src/screens/RegisterScreen";
 import LobbyScreen from "./src/screens/LobbyScreen";
 import QuizScreen from "./src/screens/QuizScreen";
 import QuizWizardCategories from "./src/screens/QuizWizardCategories";
 import QuizWizardInvite from "./src/screens/QuizWizardInvite";
-import { AuthProvider } from "./src/services/FirebaseAuthContext";
+import { useAuth, AuthProvider } from "./src/services/FirebaseAuthContext";
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,10 @@ export default function App() {
 					screenOptions={{ headerShown: false }}
 				>
 					<Stack.Screen name="LoginScreen" component={LoginScreen} />
+					<Stack.Screen
+						name="RegisterScreen"
+						component={RegisterScreen}
+					/>
 					<Stack.Screen name="LobbyScreen" component={LobbyScreen} />
 					<Stack.Screen name="QuizScreen" component={QuizScreen} />
 					<Stack.Screen

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, Image, SafeAreaView, Alert } from "react-native";
+import { StyleSheet, Text, Image, SafeAreaView } from "react-native";
 import Colors from "../colors";
 import logo from "../../assets/QuizrRoyaleLogo1.png";
 import Input from "../components/Input";
@@ -8,24 +8,27 @@ import ErrorMessage from "../components/ErrorMessage";
 import { useAuth } from "../services/FirebaseAuthContext";
 
 function LoginScreen({ navigation }) {
-	const { login, currentUser } = useAuth();
+	const { register, currentUser } = useAuth();
 	const [email, setEmail] = React.useState("");
 	const [password, setPassword] = React.useState("");
+	const [passwordConfirm, setPasswordConfirm] = React.useState("");
 	const [error, setError] = useState(" ");
 	const [loading, setLoading] = useState(false);
 
-	async function handleLogin(e) {
+	async function handleRegister(e) {
 		e.preventDefault();
 
+		if (password !== passwordConfirm) {
+			return setError("Passwords do not match");
+		}
 		try {
 			setError("");
 			setLoading(true);
-			await login(email, password);
-			//console.log("logged in succesfully!");
+			await register(email, password);
 			navigation.navigate("LobbyScreen");
-		} catch {
-			console.error("Failed to log in!");
-			setError("Incorrect username or password!");
+		} catch (error) {
+			console.error("Failed registration! Reason:" + error);
+			setError(error.toString());
 		}
 
 		setLoading(false);
@@ -51,27 +54,29 @@ function LoginScreen({ navigation }) {
 				value={password}
 				onChangeText={setPassword}
 			/>
-
-			<Button
-				title={"Login"}
-				style={styles.button}
-				disabled={loading}
-				onPress={(e) => {
-					handleLogin(e);
-				}}
+			<Text style={styles.text}>Password Confirmation</Text>
+			<Input
+				style={styles.input}
+				placeholder={"Re enter password"}
+				secureTextEntry
+				value={passwordConfirm}
+				onChangeText={setPasswordConfirm}
 			/>
 			<Button
 				title={"Register"}
 				style={styles.button}
-				//disabled={true}
-				onPress={() => navigation.navigate("RegisterScreen")}
+				disabled={loading}
+				onPress={(e) => {
+					handleRegister(e);
+				}}
+			/>
+			<Button
+				title={"Back to login"}
+				style={styles.button}
+				onPress={() => navigation.navigate("LoginScreen")}
 			/>
 		</SafeAreaView>
 	);
-}
-
-function notifyMessage(msg) {
-	Alert.alert("Currently not implemented", msg);
 }
 
 const styles = StyleSheet.create({
@@ -97,7 +102,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	button: {
-		marginVertical: 14,
+		marginVertical: 10,
 		alignItems: "center",
 	},
 });
