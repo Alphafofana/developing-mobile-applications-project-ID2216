@@ -15,7 +15,10 @@ export default function QuizWizardCategories({navigation}) {
 		});*/
 		
 		quiz.setQuestions(cat).then(data => {
-			console.log(data);
+			quiz.setQuestion(data.results[0].question);
+			quiz.setCorrectAnswer(data.results[0].correct_answer);
+			quiz.setIncorrectAnswers(data.results[0].incorrect_answers);
+
 		});
 	}
 

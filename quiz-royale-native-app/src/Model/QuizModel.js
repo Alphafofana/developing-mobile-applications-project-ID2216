@@ -1,8 +1,9 @@
 class QuizModel {
     constructor(props) {
         this.question = "";
-        this.answers = [];
-        this.category = Number;
+        this.correctAnswer = ""
+        this.incorrectAnswers = [];
+        this.category;
     }
 
     getCategories() {
@@ -17,6 +18,38 @@ class QuizModel {
             .then(response => response.json())
             .then(data => data)
             .catch(console.error)
+    }
+
+    setQuestion(question) {
+        this.question = question;
+    }
+
+    setCorrectAnswer(ans) {
+        this.correctAnswer = ans;
+    }
+
+    setIncorrectAnswers(incorrectAns) {
+        this.incorrectAnswers = incorrectAns;
+    }
+
+    setIncorrectAnswers(categoryNum) {
+        this.category = categoryNum;
+    }
+
+    getQuestion() {
+        return this.question;
+    }
+
+    getCorrectAnswer() {
+        return this.correctAnswer;
+    }
+
+    getIncorrectAnswers() {
+        return this.incorrectAnswers;
+    }
+
+    getIncorrectAnswers() {
+        return this.category;
     }
 }
 
