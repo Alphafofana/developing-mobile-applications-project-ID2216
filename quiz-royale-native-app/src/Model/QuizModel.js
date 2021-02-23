@@ -1,12 +1,9 @@
 class QuizModel {
     constructor(props) {
-        this.questions = [];
-        this.answers = [];
-        this.pendingAnswer = "";
-        this.numberOfQuestions = Number;
-        this.category = Number;
-        this.difficulty = String;
-        this.type = String;
+        this.question = "";
+        this.correctAnswer = ""
+        this.incorrectAnswers = [];
+        this.category;
     }
 
     getCategories() {
@@ -14,6 +11,45 @@ class QuizModel {
             .then(response => response.json())
             .then(data => data)
             .catch(console.error);
+    }
+
+    setQuestions(cat) {
+        return fetch(`https://opentdb.com/api.php?amount=1&category=${cat}&type=multiple`, {})
+            .then(response => response.json())
+            .then(data => data)
+            .catch(console.error)
+    }
+
+    setQuestion(question) {
+        this.question = question;
+    }
+
+    setCorrectAnswer(ans) {
+        this.correctAnswer = ans;
+    }
+
+    setIncorrectAnswers(incorrectAns) {
+        this.incorrectAnswers = incorrectAns;
+    }
+
+    setIncorrectAnswers(categoryNum) {
+        this.category = categoryNum;
+    }
+
+    getQuestion() {
+        return this.question;
+    }
+
+    getCorrectAnswer() {
+        return this.correctAnswer;
+    }
+
+    getIncorrectAnswers() {
+        return this.incorrectAnswers;
+    }
+
+    getIncorrectAnswers() {
+        return this.category;
     }
 }
 

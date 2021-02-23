@@ -8,10 +8,18 @@ import NavigationBar from "../components/NavigationBar";
 import quiz from "../Model/QuizModel";
 
 export default function QuizWizardCategories({navigation}) {
-	function getCategories(){
+	function getQuestions(cat){
+		/*
 		quiz.getCategories().then(data => {
-			console.log(data.trivia_categories);
-		  });
+			console.log(data);
+		});*/
+		
+		quiz.setQuestions(cat).then(data => {
+			quiz.setQuestion(data.results[0].question);
+			quiz.setCorrectAnswer(data.results[0].correct_answer);
+			quiz.setIncorrectAnswers(data.results[0].incorrect_answers);
+
+		});
 	}
 
 	return (
@@ -21,48 +29,48 @@ export default function QuizWizardCategories({navigation}) {
 				<Text style={{fontSize: 24, color: 'white'}}>Quiz Wizard</Text>
 				<View>
 					<View style={styles.row}>
-						<TouchableOpacity style={styles.category} onPress={() => getCategories()}>
+						<TouchableOpacity style={styles.category} value={"21"} onPress={() => getQuestions("21")}>
 							<View style={styles.center}>
-								<Text style={{color: 'white', fontSize: 20}}>Sport</Text>
+								<Text style={{color: 'white', fontSize: 20}}>Sports</Text>
 							</View>
 						</TouchableOpacity>
-						<TouchableOpacity style={styles.category}>
+						<TouchableOpacity style={styles.category} value={"23"}  onPress={() => getQuestions("23")}>
 							<View style={styles.center}>
 								<Text style={{color: 'white', fontSize: 20}}>History</Text>
 							</View>
 						</TouchableOpacity>
 					</View>
 					<View style={styles.row}>
-						<TouchableOpacity style={styles.category}>
+						<TouchableOpacity style={styles.category} value={"17"}  onPress={() => getQuestions("17")}>
 							<View style={styles.center}>
 								<Text style={{color: 'white', fontSize: 20}}>Science</Text>
 							</View>
 						</TouchableOpacity>
-						<TouchableOpacity style={styles.category}>
+						<TouchableOpacity style={styles.category} value={"24"}  onPress={() => getQuestions("24")}>
 							<View style={styles.center}>
 								<Text style={{color: 'white', fontSize: 20}}>Politics</Text>
 							</View>
 						</TouchableOpacity>
 					</View>
 					<View style={styles.row}>
-						<TouchableOpacity style={styles.category}>
+						<TouchableOpacity style={styles.category} value={"20"}  onPress={() => getQuestions("20")}>
 							<View style={styles.center}>
-								<Text style={{color: 'white', fontSize: 20}}>Culture</Text>
+								<Text style={{color: 'white', fontSize: 20}}>Mythology</Text>
 							</View>
 						</TouchableOpacity>
-						<TouchableOpacity style={styles.category}>
+						<TouchableOpacity style={styles.category} value={"11"}  onPress={() => getQuestions("11")}>
 							<View style={styles.center}>
-								<Text style={{color: 'white', fontSize: 20}}>Movie</Text>
+								<Text style={{color: 'white', fontSize: 20}}>Movies</Text>
 							</View>
 						</TouchableOpacity>
 					</View>
 					<View style={styles.row}>
-						<TouchableOpacity style={styles.category}>
+						<TouchableOpacity style={styles.category} value={"12"}  onPress={() => getQuestions("12")}>
 							<View style={styles.center}>
 								<Text style={{color: 'white', fontSize: 20}}>Music</Text>
 							</View>
 						</TouchableOpacity>
-						<TouchableOpacity style={styles.category}>
+						<TouchableOpacity style={styles.category} value={"9"}  onPress={() => getQuestions("9")}>
 							<View style={styles.center}>
 								<Text style={{color: 'white', fontSize: 20}}>Other</Text>
 							</View>
