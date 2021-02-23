@@ -24,7 +24,7 @@ function LoginScreen({ navigation }) {
 			//console.log("logged in succesfully!");
 			navigation.navigate("LobbyScreen");
 		} catch {
-			console.error("Failed to log in!");
+			//console.error("Failed to log in!");
 			setError("Incorrect username or password!");
 		}
 
@@ -32,7 +32,7 @@ function LoginScreen({ navigation }) {
 	}
 
 	return (
-		<SafeAreaView style={styles.main} accessibilityRole="form">
+		<SafeAreaView style={styles.main}>
 			<Image source={logo} style={styles.logo} />
 			<ErrorMessage error={error} />
 			<Text style={styles.text}>Email </Text>
@@ -64,7 +64,10 @@ function LoginScreen({ navigation }) {
 				title={"Register"}
 				style={styles.button}
 				//disabled={true}
-				onPress={() => navigation.navigate("RegisterScreen")}
+				onPress={() => {
+					setError("");
+					navigation.navigate("RegisterScreen");
+				}}
 			/>
 		</SafeAreaView>
 	);

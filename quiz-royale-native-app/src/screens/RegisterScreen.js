@@ -27,7 +27,7 @@ function LoginScreen({ navigation }) {
 			await register(email, password);
 			navigation.navigate("LobbyScreen");
 		} catch (error) {
-			console.error("Failed registration! Reason:" + error);
+			//console.error("Failed registration! Reason:" + error);
 			setError(error.toString());
 		}
 
@@ -35,7 +35,7 @@ function LoginScreen({ navigation }) {
 	}
 
 	return (
-		<SafeAreaView style={styles.main} accessibilityRole="form">
+		<SafeAreaView style={styles.main}>
 			<Image source={logo} style={styles.logo} />
 			<ErrorMessage error={error} />
 			<Text style={styles.text}>Email </Text>
@@ -73,7 +73,10 @@ function LoginScreen({ navigation }) {
 			<Button
 				title={"Back to login"}
 				style={styles.button}
-				onPress={() => navigation.navigate("LoginScreen")}
+				onPress={() => {
+					setError("");
+					navigation.navigate("LoginScreen");
+				}}
 			/>
 		</SafeAreaView>
 	);
