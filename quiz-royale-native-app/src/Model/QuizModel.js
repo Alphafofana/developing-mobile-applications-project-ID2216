@@ -1,12 +1,8 @@
 class QuizModel {
     constructor(props) {
-        this.questions = [];
+        this.question = "";
         this.answers = [];
-        this.pendingAnswer = "";
-        this.numberOfQuestions = Number;
         this.category = Number;
-        this.difficulty = String;
-        this.type = String;
     }
 
     getCategories() {
@@ -17,7 +13,7 @@ class QuizModel {
     }
 
     setQuestions(cat) {
-        return fetch(`https://opentdb.com/api.php?amount=2&category=${cat}&type=multiple`, {})
+        return fetch(`https://opentdb.com/api.php?amount=1&category=${cat}&type=multiple`, {})
             .then(response => response.json())
             .then(data => data)
             .catch(console.error)
