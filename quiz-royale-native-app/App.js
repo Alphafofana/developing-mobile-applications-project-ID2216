@@ -9,6 +9,7 @@ import LobbyScreen from "./src/screens/LobbyScreen";
 import QuizScreen from "./src/screens/QuizScreen";
 import QuizWizardCategories from "./src/screens/QuizWizardCategories";
 import QuizWizardInvite from "./src/screens/QuizWizardInvite";
+import MiddleScreen from "./src/screens/MiddleScreen";
 import { AuthProvider } from "./src/services/FirebaseAuthContext";
 
 const Stack = createStackNavigator();
@@ -18,20 +19,15 @@ export default function App() {
 		<NavigationContainer>
 			<AuthProvider>
 				<Stack.Navigator
-					initialRouteName="Home"
+					initialRouteName="MiddleScreen"
 					screenOptions={{ headerShown: false }}
 				>
 					<Stack.Screen name="LoginScreen" component={LoginScreen} />
 					<Stack.Screen name="LobbyScreen" component={LobbyScreen} />
 					<Stack.Screen name="QuizScreen" component={QuizScreen} />
-					<Stack.Screen
-						name="QuizWizardCategories"
-						component={QuizWizardCategories}
-					/>
-					<Stack.Screen
-						name="QuizWizardInvite"
-						component={QuizWizardInvite}
-					/>
+					<Stack.Screen name="MiddleScreen" component={MiddleScreen} />
+					<Stack.Screen name="QuizWizardCategories" component={QuizWizardCategories} />
+					<Stack.Screen name="QuizWizardInvite" component={QuizWizardInvite} />
 				</Stack.Navigator>
 			</AuthProvider>
 		</NavigationContainer>
