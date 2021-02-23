@@ -11,6 +11,7 @@ import QuizScreen from "./src/screens/QuizScreen";
 import QuizWizardCategories from "./src/screens/QuizWizardCategories";
 import QuizWizardInvite from "./src/screens/QuizWizardInvite";
 import EndScreen from "./src/screens/EndScreen";
+import MiddleScreen from "./src/screens/MiddleScreen";
 import { useAuth, AuthProvider } from "./src/services/FirebaseAuthContext";
 
 const Stack = createStackNavigator();
