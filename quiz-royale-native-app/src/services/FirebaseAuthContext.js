@@ -28,7 +28,7 @@ export function AuthProvider({ children }) {
 		return auth.signOut();
 	}
 
-	function signup(email, password) {
+	function register(email, password) {
 		return auth.createUserWithEmailAndPassword(email, password);
 	}
 
@@ -45,6 +45,7 @@ export function AuthProvider({ children }) {
 		currentUser,
 		login,
 		logout,
+		register,
 	};
 
 	return (
