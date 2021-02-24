@@ -3,13 +3,21 @@ import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import Colors from "../colors";
 
-function NavigationBar() {
+function NavigationBar({ navigation }) {
 	return (
 		<View style={styles.view}>
-			<TouchableOpacity>
+			<TouchableOpacity
+				onPress={() => {
+					navigation.navigate("ProfileScreen");
+				}}
+			>
 				<FontAwesome size={50} name="user" color={Colors.WHITE} />
 			</TouchableOpacity>
-			<TouchableOpacity>
+			<TouchableOpacity
+				onPress={() => {
+					navigation.navigate("LobbyScreen");
+				}}
+			>
 				<FontAwesome size={50} name="home" color={Colors.WHITE} />
 			</TouchableOpacity>
 			<TouchableOpacity>
