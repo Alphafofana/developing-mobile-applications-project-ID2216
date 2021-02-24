@@ -12,6 +12,7 @@ import QuizWizardCategories from "./src/screens/QuizWizardCategories";
 import QuizWizardInvite from "./src/screens/QuizWizardInvite";
 import EndScreen from "./src/screens/EndScreen";
 import MiddleScreen from "./src/screens/MiddleScreen";
+import ProfileScreen from "./src/screens/ProfileScreen";
 import { useAuth, AuthProvider } from "./src/services/FirebaseAuthContext";
 
 const Stack = createStackNavigator();
@@ -29,6 +30,11 @@ export default function App() {
 						name="RegisterScreen"
 						component={RegisterScreen}
 					/>
+					<Stack.Screen
+						name="ProfileScreen"
+						component={ProfileScreen}
+					/>
+
 					<Stack.Screen name="LobbyScreen" component={LobbyScreen} />
 					<Stack.Screen name="QuizScreen" component={QuizScreen} />
 					<Stack.Screen name="MiddleScreen" component={MiddleScreen} />
