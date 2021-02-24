@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Text } from "react-native";
 import QuizScreen from "./QuizScreen";
 import MiddleScreenMock from "./MiddleScreenMock";
 import QuizModel from "../Model/QuizModel";
@@ -10,6 +11,7 @@ const screens = {
 };
 
 function GameContainer() {
+	const [questions, setQuestions] = useState(false);
 	const [state, setState] = useState({
 		users: [
 			{ name: "banan", isBot: true, answer: "Grape" },
@@ -25,6 +27,32 @@ function GameContainer() {
 		remainingUsers: 3,
 		startingUsers: 10,
 	});
+
+	useEffect(() => {
+		const cat = 21;
+		async function loadData() {
+			fetch(
+				`https://opentdb.com/api.php?amount=10&category=${cat}&type=multiple`,
+				{}
+			)
+				.then((response) => response.json())
+				.then((data) => {
+					setQuestions((prevState) => ({
+						...prevState,
+						questions: data.results,
+					}));
+					setState((prevState) => ({
+						...prevState,
+						question: data.results[0].question,
+						correctAnswer: data.results[0].correct_answer,
+						incorrectAnswers: data.results[0].incorrect_answers,
+					}));
+				})
+				.catch(console.error);
+		}
+
+		loadData();
+	}, []);
 
 	const doGameLogic = () => {
 		setState((prevState) => {
