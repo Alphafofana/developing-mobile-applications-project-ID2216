@@ -7,19 +7,32 @@ import Header from "../components/Header";
 import NavigationBar from "../components/NavigationBar";
 
 export default function MiddleScreen({navigation}) {
+    const alive = [
+		"Richard",
+		"Edvin",
+		"Alpha",
+	];
+    const eliminatedThisRound = ["Agnes"];
+    const round = "1";
+
 	return (
 		<>
             <Header/>
 			<View style={styles.main}>
-                <Text style={{fontSize: 24, color: 'white'}}>Round 1</Text>
+                <Text style={{fontSize: 24, color: 'white'}}>{"Round " + round}</Text>
                 <View style={{flex: 1, justifyContent: "space-between"}}>
                     <View style={StyleSheet.mainmiddlescreen}>
                         <Text style={{fontSize: 18, color: 'white', fontWeight: 'bold'}}>Alive</Text>
                         <View style={styles.line}></View>
+                        {alive.map(person => (<Text style={{fontSize: 18, color: 'white'}}>{person}</Text>))}
+                        <br></br>
                         <Text style={{fontSize: 18, color: 'white', fontWeight: 'bold'}}>Eliminated this round</Text>
                         <View style={styles.line}></View>
+                        {eliminatedThisRound.map(person => (<Text style={{fontSize: 18, color: 'white'}}>{person}</Text>))}
+                        {/*
                         <Text style={{fontSize: 18, color: 'white', fontWeight: 'bold'}}>Eliminated</Text>
                         <View style={styles.line}></View>
+                        */}
                     </View>
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LobbyScreen')}>
                         <View style={styles.center}>

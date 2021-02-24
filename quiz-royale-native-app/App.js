@@ -22,7 +22,7 @@ export default function App() {
 		<NavigationContainer>
 			<AuthProvider>
 				<Stack.Navigator
-					initialRouteName="EndScreen"
+					initialRouteName="MiddleScreen"
 					screenOptions={{ headerShown: false }}
 				>
 					<Stack.Screen name="LoginScreen" component={LoginScreen} />
