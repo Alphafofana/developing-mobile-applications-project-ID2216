@@ -16,6 +16,7 @@ function QuizScreen({
 	round,
 	remainingUsers,
 	startingUsers,
+	onAnswer,
 }) {
 	// const [alternatives, setAlternatives] = useState([
 	// 	{ text: "banana", id: 1, selected: false },
@@ -35,6 +36,7 @@ function QuizScreen({
 				return alt;
 			})
 		);
+		onAnswer(text);
 	}
 
 	const renderItem = (alternative) => {
@@ -43,6 +45,7 @@ function QuizScreen({
 				text={alternative.item}
 				/*selected={alternative.item.selected}
 				handlePress={onPress}*/
+				handlePress={() => onAnswer(alternative.item)}
 			/>
 		);
 	};
