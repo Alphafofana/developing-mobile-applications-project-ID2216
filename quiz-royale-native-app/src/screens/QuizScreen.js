@@ -17,6 +17,7 @@ function QuizScreen({
 	remainingUsers,
 	startingUsers,
 	onAnswer,
+	navigation
 }) {
 	// const [alternatives, setAlternatives] = useState([
 	// 	{ text: "banana", id: 1, selected: false },
@@ -68,7 +69,9 @@ function QuizScreen({
 					keyExtractor={(alternative) => alternative}
 				/>
 			</SafeAreaView>
-			<NavigationBar />
+			<NavigationBar 
+				navigation={navigation}
+			/>
 		</>
 	);
 }

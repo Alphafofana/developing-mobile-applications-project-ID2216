@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Text } from "react-native";
 import QuizScreen from "./QuizScreen";
-import MiddleScreenMock from "./MiddleScreenMock";
-import QuizModel from "../Model/QuizModel";
+import EndScreen from "./EndScreen";
+import MiddleScreen from "./MiddleScreen";
 
 const screens = {
 	QUESTION_SCREEN: "question-screen",
@@ -10,14 +9,13 @@ const screens = {
 	END_SCREEN: "end-screen",
 };
 
-function GameContainer() {
+function GameContainer({ navigation }) {
 	const [questions, setQuestions] = useState(false);
 	const [tick, setTick] = useState(0);
 	const [state, setState] = useState({
 		users: [
-			{ name: "banan", isBot: true, answer: "Grape" },
-			{ name: "gurka", isBot: true, answer: "Grape" },
-			{ name: "edvin", isBot: false, answer: "Banana" },
+			{ name: "Rillmeister", answer: "Grape" },
+			{ name: "User", answer: "Grape" },
 		],
 		screen: screens.QUESTION_SCREEN,
 		usersEliminatedLastRound: [],
@@ -25,8 +23,10 @@ function GameContainer() {
 		correctAnswer: "Loading",
 		incorrectAnswers: ["Loading.", "Loading..", "Loading..."],
 		round: 1,
-		remainingUsers: 3,
-		startingUsers: 10,
+		remainingUsers: 2,
+		startingUsers: 2,
+		questions: [],
+		userHasWon: false,
 	});
 
 	useEffect(() => {
@@ -44,6 +44,7 @@ function GameContainer() {
 					}));
 					setState((prevState) => ({
 						...prevState,
+						questions: data.results,
 						question: data.results[0].question,
 						correctAnswer: data.results[0].correct_answer,
 						incorrectAnswers: data.results[0].incorrect_answers,
@@ -56,47 +57,21 @@ function GameContainer() {
 	}, []);
 
 	const onUserSelectAnswer = (answer) => {
-		const users = [...state.users].map((user) => {
-			if (user.isBot == false) {
-				user.answer = answer;
-			}
-			return user;
-		});
 
-		setState((prevState) => ({ ...prevState, users }));
-	};
-
-	const doGameLogic = () => {
-		setState((prevState) => {
-			console.log(prevState);
-			if (prevState.screen === screens.MID_SCREEN) {
-				return { ...prevState, screen: screens.QUESTION_SCREEN };
+		if(answer == state.correctAnswer){
+			if(state.round == 10){
+				setState((prevState) => ({ ...prevState, screen: screens.END_SCREEN, userHasWon: true }));
 			} else {
-				const eliminatedUsers = state.users
-					.filter((user) => user.answer !== state.correctAnswer)
-					.map((user) => user.name);
-
-				const remainingUsers =
-					state.users.length - eliminatedUsers.length;
-				console.log(state.correctAnswer);
-				const users = [...state.users]
-					.filter((user) => user.answer == state.correctAnswer)
-					.map((user) => ({ ...user, answer: "" }));
-				return {
-					...prevState,
-					usersEliminatedLastRound: eliminatedUsers,
-					remainingUsers,
-					users,
-					screen: screens.MID_SCREEN,
-				};
+				setState((prevState) => ({ ...prevState, screen: screens.MID_SCREEN, question: state.questions[state.round].question, correctAnswer: state.questions[state.round].correct_answer, incorrectAnswers: state.questions[state.round].incorrect_answers, round: state.round + 1 }));
 			}
-		});
-		setTick((prevTick) => prevTick + 1);
+		} else {
+			setState((prevState) => ({ ...prevState, screen: screens.END_SCREEN }));
+		}
 	};
-
-	useEffect(() => {
-		setTimeout(doGameLogic, 8000);
-	}, [tick]);
+	
+	function goToQuestionScreen(){
+		setState((prevState) => ({ ...prevState, screen: screens.QUESTION_SCREEN }))
+	}
 
 	return (
 		<>
@@ -111,14 +86,26 @@ function GameContainer() {
 					remainingUsers={state.remainingUsers}
 					startingUsers={state.startingUsers}
 					onAnswer={onUserSelectAnswer}
+					navigation={navigation}
 				/>
 			)}
 			{state.screen == screens.MID_SCREEN && (
-				<MiddleScreenMock
+				<MiddleScreen
 					eliminated={state.usersEliminatedLastRound}
 					users={state.users}
+					round={state.round - 1}
+					onNextQuestion={goToQuestionScreen}
+					navigation={navigation}
 				/>
 			)}
+			{state.screen == screens.END_SCREEN && (
+				<EndScreen
+					userHasWon={state.userHasWon}
+					navigation={navigation}
+				/>
+			)
+			
+			}
 		</>
 	);
 }

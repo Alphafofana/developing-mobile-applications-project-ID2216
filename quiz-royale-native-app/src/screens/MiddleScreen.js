@@ -1,19 +1,12 @@
 import React from "react";
 import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import Colors from "../colors";
 import Header from "../components/Header";
 import NavigationBar from "../components/NavigationBar";
 
-export default function MiddleScreen({navigation}) {
-    const alive = [
-		"Richard",
-		"Edvin",
-		"Alpha",
-	];
-    const eliminatedThisRound = ["Agnes"];
-    const round = "1";
+export default function MiddleScreen({navigation, users, eliminated, round, onNextQuestion}) {
+    const alive = users.map(user => user.name);
+    const eliminatedThisRound = eliminated;
 
 	return (
 		<>
@@ -29,19 +22,22 @@ export default function MiddleScreen({navigation}) {
                         <Text style={{fontSize: 18, color: 'white', fontWeight: 'bold'}}>Eliminated this round</Text>
                         <View style={styles.line}></View>
                         {eliminatedThisRound.map(person => (<Text style={{fontSize: 18, color: 'white'}}>{person}</Text>))}
-                        {/*
-                        <Text style={{fontSize: 18, color: 'white', fontWeight: 'bold'}}>Eliminated</Text>
-                        <View style={styles.line}></View>
-                        */}
                     </View>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LobbyScreen')}>
+                    <TouchableOpacity style={styles.button} onPress={onNextQuestion}>
+                        <View style={styles.center}>
+                            <Text style={{fontSize: 18}}>Continue</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("LobbyScreen")}>
                         <View style={styles.center}>
                             <Text style={{fontSize: 18}}>Leave Game</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
 			</View>
-			<NavigationBar/>
+			<NavigationBar
+                navigation={navigation}
+            />
 		</>
 	);
 }

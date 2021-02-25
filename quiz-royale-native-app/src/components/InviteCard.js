@@ -7,12 +7,10 @@ export default function InviteCar({ navigation }) {
 		<View style={styles.main}>
 			<View style={styles.categories}>
 				<Text>Sport</Text>
-				<Text>History</Text>
-				<Text>Science</Text>
 			</View>
 			<View style={styles.meta}>
 				<Text>Created by Richard</Text>
-				<Text>10 invited</Text>
+				<Text>2 invited</Text>
 			</View>
 		</View>
 	);

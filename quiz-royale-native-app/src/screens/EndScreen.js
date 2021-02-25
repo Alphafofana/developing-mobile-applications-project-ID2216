@@ -1,32 +1,33 @@
 import React from "react";
 import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import Colors from "../colors";
 import Header from "../components/Header";
 import NavigationBar from "../components/NavigationBar";
 
-export default function EndScreen({navigation}) {
+export default function EndScreen({navigation, userHasWon}) {
 	return (
 		<>
             <Header/>
 			<View style={styles.main}>
-                <Text style={{fontSize: 24, color: 'white'}}>Winner</Text>
+                <Text style={{fontSize: 24, color: 'white'}}>{userHasWon ? "You Win" : "Rillmeister Wins"}</Text>
                 <Text style={{fontSize: 18, color: 'white'}}>Username of the winner</Text>
                 <br></br>
                 <View style={{flex: 1, justifyContent: "space-between"}}>
                     <View style={StyleSheet.mainmiddlescreen}>
                         <Text style={{fontSize: 18, color: 'white', fontWeight: 'bold'}}>Eliminated</Text>
                         <View style={styles.line}></View>
+                        <Text style={{fontSize: 18, color: 'white'}}>{userHasWon ? "Rillmeister" : "User"}</Text>
                     </View>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LobbyScreen')}>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("LobbyScreen")}>
                         <View style={styles.center}>
                             <Text style={{fontSize: 18}}>Back to Lobby</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
 			</View>
-			<NavigationBar/>
+			<NavigationBar
+                navigation={navigation}
+            />
 		</>
 	);
 }
