@@ -10,13 +10,19 @@ const question = {
 	text: "Which is yellow?",
 };
 
-function QuizScreen() {
-	const [alternatives, setAlternatives] = useState([
-		{ text: "banana", id: 1, selected: false },
-		{ text: "green", id: 2, selected: false },
-		{ text: "purple", id: 3, selected: false },
-		{ text: "monkey", id: 4, selected: false },
-	]);
+function QuizScreen({
+	alternatives,
+	question,
+	round,
+	remainingUsers,
+	startingUsers,
+}) {
+	// const [alternatives, setAlternatives] = useState([
+	// 	{ text: "banana", id: 1, selected: false },
+	// 	{ text: "green", id: 2, selected: false },
+	// 	{ text: "purple", id: 3, selected: false },
+	// 	{ text: "monkey", id: 4, selected: false },
+	// ]);
 
 	function onPress(text) {
 		setAlternatives((prevAlternatives) =>
@@ -32,12 +38,11 @@ function QuizScreen() {
 	}
 
 	const renderItem = (alternative) => {
-		console.log(alternative);
 		return (
 			<QuestionAlternative
-				text={alternative.item.text}
-				selected={alternative.item.selected}
-				handlePress={onPress}
+				text={alternative.item}
+				/*selected={alternative.item.selected}
+				handlePress={onPress}*/
 			/>
 		);
 	};
@@ -47,15 +52,17 @@ function QuizScreen() {
 			<Header />
 			<SafeAreaView style={styles.main}>
 				<View style={styles.metaInfo}>
-					<Text style={styles.metaInfoText}>Round 1</Text>
-					<Text style={styles.metaInfoText}>Remaining: 2/2</Text>
+					<Text style={styles.metaInfoText}>Round {round}</Text>
+					<Text style={styles.metaInfoText}>
+						Remaining: {remainingUsers}/{startingUsers}
+					</Text>
 				</View>
-				<Question text={question.text} />
+				<Question text={question} />
 				<FlatList
 					data={alternatives}
 					renderItem={renderItem}
 					numColumns={2}
-					keyExtractor={(alternative) => alternative.id}
+					keyExtractor={(alternative) => alternative}
 				/>
 			</SafeAreaView>
 			<NavigationBar />

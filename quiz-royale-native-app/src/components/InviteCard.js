@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Colors from "../colors";
 
-export default function InviteCar({navigation}) {
+export default function InviteCar({ navigation }) {
 	return (
 		<View style={styles.main}>
 			<View style={styles.categories}>
@@ -20,7 +20,7 @@ export default function InviteCar({navigation}) {
 
 const styles = StyleSheet.create({
 	main: {
-		flex: 1,
+		//flex: 1,
 		flexDirection: "row",
 		justifyContent: "space-between",
 		marginLeft: 30,

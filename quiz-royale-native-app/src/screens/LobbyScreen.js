@@ -18,12 +18,12 @@ export default function LobbyScreen({ navigation }) {
 				</Text>
 				<View>
 					<TouchableOpacity
-						onPress={() => navigation.navigate("QuizScreen")}
+						onPress={() => navigation.navigate("GameContainer")}
 					>
 						<InviteCard />
 					</TouchableOpacity>
 					<TouchableOpacity
-						onPress={() => navigation.navigate("QuizScreen")}
+						onPress={() => navigation.navigate("GameContainer")}
 					>
 						<InviteCard />
 					</TouchableOpacity>
@@ -31,7 +31,7 @@ export default function LobbyScreen({ navigation }) {
 				<View>
 					<TouchableOpacity
 						style={styles.button}
-						onPress={() => navigation.navigate("QuizScreen")}
+						onPress={() => navigation.navigate("GameContainer")}
 					>
 						<View style={styles.center}>
 							<Text style={{ fontSize: 20 }}>Quick Game</Text>

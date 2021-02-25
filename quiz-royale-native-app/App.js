@@ -7,7 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from "./src/screens/LoginScreen";
 import RegisterScreen from "./src/screens/RegisterScreen";
 import LobbyScreen from "./src/screens/LobbyScreen";
-import QuizScreen from "./src/screens/QuizScreen";
+import GameContainer from "./src/screens/GameContainer";
 import QuizWizardCategories from "./src/screens/QuizWizardCategories";
 import QuizWizardInvite from "./src/screens/QuizWizardInvite";
 import EndScreen from "./src/screens/EndScreen";
@@ -41,6 +41,18 @@ export default function App() {
 					<Stack.Screen name="QuizWizardCategories" component={QuizWizardCategories} />
 					<Stack.Screen name="QuizWizardInvite" component={QuizWizardInvite} />
 					<Stack.Screen name="EndScreen" component={EndScreen} />
+					<Stack.Screen
+						name="GameContainer"
+						component={GameContainer}
+					/>
+					<Stack.Screen
+						name="QuizWizardCategories"
+						component={QuizWizardCategories}
+					/>
+					<Stack.Screen
+						name="QuizWizardInvite"
+						component={QuizWizardInvite}
+					/>
 				</Stack.Navigator>
 			</AuthProvider>
 		</NavigationContainer>
