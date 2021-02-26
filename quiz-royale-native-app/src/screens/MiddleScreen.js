@@ -34,7 +34,10 @@ export default function MiddleScreen({
 						</Text>
 						<View style={styles.line}></View>
 						{alive.map((person) => (
-							<Text style={{ fontSize: 18, color: "white" }}>
+							<Text
+								key={person}
+								style={{ fontSize: 18, color: "white" }}
+							>
 								{person}
 							</Text>
 						))}
